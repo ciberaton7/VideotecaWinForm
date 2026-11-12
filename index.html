@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videoteca: C# Windows Forms</title>
+    <style>
+        :root {
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --bg-hover: #334155;
+            --accent: #38bdf8;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px auto;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        .library-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            background-color: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .category-header {
+            background-color: rgba(56, 189, 248, 0.1);
+            padding: 20px 25px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .category-icon {
+            font-size: 1.8rem;
+        }
+
+        .category-title {
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .video-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .video-item {
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .video-item:last-child {
+            border-bottom: none;
+        }
+
+        .video-link {
+            display: flex;
+            align-items: center;
+            padding: 15px 25px;
+            text-decoration: none;
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+            gap: 15px;
+        }
+
+        .video-link:hover {
+            background-color: var(--bg-hover);
+            color: var(--text-main);
+            padding-left: 30px; /* Efecto de desplazamiento */
+        }
+
+        .video-number {
+            background-color: var(--border);
+            color: var(--text-main);
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 4px 8px;
+            border-radius: 6px;
+            min-width: 25px;
+            text-align: center;
+        }
+
+        .video-link:hover .video-number {
+            background-color: var(--accent);
+        }
+
+        .video-title {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .play-icon {
+            margin-left: auto;
+            opacity: 0;
+            color: var(--accent);
+            transform: translateX(-10px);
+            transition: all 0.2s ease;
+        }
+
+        .video-link:hover .play-icon {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>🖥️ Videoteca: C# Windows Forms</h1>
+        <p>Catálogo completo de clases prácticas para el diseño de Interfaces Gráficas. Selecciona una categoría y haz clic en el tema para ir al video.</p>
+    </div>
+
+    <div class="library-grid">
+
+        <!-- 1. INTRODUCCIÓN Y ENTORNO -->
+        <div class="category-card">
+            <div class="category-header">
+                <div class="category-icon">⚙️</div>
+                <h2 class="category-title">1. Introducción y Entorno</h2>
+            </div>
+            <ul class="video-list">
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=O6Qh-eS-d3c" target="_blank" class="video-link"><span class="video-number">1</span><span class="video-title">Introducción al Curso</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=ktMUTjR7MEY" target="_blank" class="video-link"><span class="video-number">2</span><span class="video-title">Instalación de Visual Studio</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=Mr2n06yvk28" target="_blank" class="video-link"><span class="video-number">3</span><span class="video-title">Creación de un Proyecto</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=uwbt6vxdaVs" target="_blank" class="video-link"><span class="video-number">5</span><span class="video-title">Ejecución de un Form</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=PJ5pqZ7XXj8" target="_blank" class="video-link"><span class="video-number">7</span><span class="video-title">Cuadro de Propiedades</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=ghP-QjL68dg" target="_blank" class="video-link"><span class="video-number">9</span><span class="video-title">Entendiendo el Código</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=GR39va4G6Jg" target="_blank" class="video-link"><span class="video-number">10</span><span class="video-title">Crear un Evento</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=0IlN4_WyIuE" target="_blank" class="video-link"><span class="video-number">17</span><span class="video-title">Propiedad Name</span><span class="play-icon">▶</span></a></li>
+            </ul>
+        </div>
+
+        <!-- 2. CONTROLES BÁSICOS -->
+        <div class="category-card">
+            <div class="category-header">
+                <div class="category-icon">🔘</div>
+                <h2 class="category-title">2. Controles Básicos</h2>
+            </div>
+            <ul class="video-list">
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=cG8Je3LiKLQ" target="_blank" class="video-link"><span class="video-number">6</span><span class="video-title">Uso de Label</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=OfStf0_Zp7o" target="_blank" class="video-link"><span class="video-number">8</span><span class="video-title">Uso de Button</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=RKLViVTX74Q" target="_blank" class="video-link"><span class="video-number">12</span><span class="video-title">Uso de CheckBox</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=qDZyluoNre4" target="_blank" class="video-link"><span class="video-number">13</span><span class="video-title">Uso de RadioButton</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=eN1hqGiaYPI" target="_blank" class="video-link"><span class="video-number">15</span><span class="video-title">Uso de ComboBox</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=rMx6JpK-86s" target="_blank" class="video-link"><span class="video-number">16</span><span class="video-title">Uso de PictureBox</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=vq9RKOXMsnE" target="_blank" class="video-link"><span class="video-number">23</span><span class="video-title">Uso de LinkLabel</span><span class="play-icon">▶</span></a></li>
+            </ul>
+        </div>
+
+        <!-- 3. COLECCIONES Y VISTAS -->
+        <div class="category-card">
+            <div class="category-header">
+                <div class="category-icon">📋</div>
+                <h2 class="category-title">3. Listas y Vistas</h2>
+            </div>
+            <ul class="video-list">
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=xuPfl187jDM" target="_blank" class="video-link"><span class="video-number">18</span><span class="video-title">Uso de ListView</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=i13Zn7QztUo" target="_blank" class="video-link"><span class="video-number">19</span><span class="video-title">Uso de ListBox</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=RGxMSvMsc1M" target="_blank" class="video-link"><span class="video-number">24</span><span class="video-title">Uso de TreeView</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=JBRKOLqddGo" target="_blank" class="video-link"><span class="video-number">29</span><span class="video-title">Uso de ImageList</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=GAZzhPpaKeo" target="_blank" class="video-link"><span class="video-number">47</span><span class="video-title">Uso de DataGridView</span><span class="play-icon">▶</span></a></li>
+            </ul>
+        </div>
+
+        <!-- 4. ENTRADA DE DATOS Y UTILIDADES -->
+        <div class="category-card">
+            <div class="category-header">
+                <div class="category-icon">⏱️</div>
+                <h2 class="category-title">4. Inputs y Control de Tiempo</h2>
+            </div>
+            <ul class="video-list">
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=W-OdWPud1hI" target="_blank" class="video-link"><span class="video-number">22</span><span class="video-title">Uso de DateTimePicker</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=fTzi1CGRwQc" target="_blank" class="video-link"><span class="video-number">25</span><span class="video-title">Uso de NumericUpDown</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=T0rCIJ9GvVQ" target="_blank" class="video-link"><span class="video-number">26</span><span class="video-title">Uso de RichTextBox</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=M2pZae1zaPM" target="_blank" class="video-link"><span class="video-number">33</span><span class="video-title">Uso de Track Bar</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=WcXiGpXy2ZU" target="_blank" class="video-link"><span class="video-number">51</span><span class="video-title">Uso de DomainUpDown</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=aAdyvNXR5Q4" target="_blank" class="video-link"><span class="video-number">40</span><span class="video-title">Control Timer</span><span class="play-icon">▶</span></a></li>
+            </ul>
+        </div>
+
+        <!-- 5. NAVEGACIÓN Y MÚLTIPLES FORMS -->
+        <div class="category-card">
+            <div class="category-header">
+                <div class="category-icon">🪟</div>
+                <h2 class="category-title">5. Menús y Navegación</h2>
+            </div>
+            <ul class="video-list">
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=zYrereBMyaQ" target="_blank" class="video-link"><span class="video-number">27</span><span class="video-title">WebBrowser (Interfaz)</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=jR8k6H14Ezk" target="_blank" class="video-link"><span class="video-number">28</span><span class="video-title">WebBrowser (Funciones)</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=DIED-so0pn0" target="_blank" class="video-link"><span class="video-number">30</span><span class="video-title">Uso de Menu Strip</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=3o3wqRX4iy4" target="_blank" class="video-link"><span class="video-number">31</span><span class="video-title">Crear y Abrir otro Form</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=vgg4jL_A9pM" target="_blank" class="video-link"><span class="video-number">39</span><span class="video-title">Enviar datos entre Forms</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=-OrmPZXd5qc" target="_blank" class="video-link"><span class="video-number">48</span><span class="video-title">Uso de StatusStrip</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=7v3AEnkbdZk" target="_blank" class="video-link"><span class="video-number">49</span><span class="video-title">Uso de ToolStrip</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=Wb92vMIId_g" target="_blank" class="video-link"><span class="video-number">50</span><span class="video-title">ToolStripContainer</span><span class="play-icon">▶</span></a></li>
+            </ul>
+        </div>
+
+        <!-- 6. MULTIMEDIA Y FEEDBACK AL USUARIO -->
+        <div class="category-card">
+            <div class="category-header">
+                <div class="category-icon">🔊</div>
+                <h2 class="category-title">6. Audio, Video y Feedback</h2>
+            </div>
+            <ul class="video-list">
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=3KUYqHZyiZQ" target="_blank" class="video-link"><span class="video-number">20</span><span class="video-title">Uso de ProgressBar</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=LyYSNam-1YU" target="_blank" class="video-link"><span class="video-number">21</span><span class="video-title">Personalizar Cursor</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=92UuxLVL9o0" target="_blank" class="video-link"><span class="video-number">32</span><span class="video-title">Uso de MessageBox</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=o3Z0Hfdv9Lc" target="_blank" class="video-link"><span class="video-number">42</span><span class="video-title">Reproducir Audio</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=rN3OXT-xnaM" target="_blank" class="video-link"><span class="video-number">43</span><span class="video-title">Reproducir Video</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=RL5Tu9lsXDs" target="_blank" class="video-link"><span class="video-number">44</span><span class="video-title">Sonido Beep</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=CT7s348olkA" target="_blank" class="video-link"><span class="video-number">45</span><span class="video-title">System Sounds</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=gAKmGMWKuto" target="_blank" class="video-link"><span class="video-number">46</span><span class="video-title">Uso de SoundPlayer</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=4J7EPcO4dIE" target="_blank" class="video-link"><span class="video-number">52</span><span class="video-title">Uso de ToolTip</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=ST7T4F4jHM4" target="_blank" class="video-link"><span class="video-number">53</span><span class="video-title">Uso de HelpProvider</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=zD3Ka5yd_EM" target="_blank" class="video-link"><span class="video-number">54</span><span class="video-title">Uso de ErrorProvider</span><span class="play-icon">▶</span></a></li>
+            </ul>
+        </div>
+
+        <!-- 7. CONTENEDORES Y MAQUETACIÓN -->
+        <div class="category-card">
+            <div class="category-header">
+                <div class="category-icon">📦</div>
+                <h2 class="category-title">7. Contenedores y Layout</h2>
+            </div>
+            <ul class="video-list">
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=ZFD7JLfqg4E" target="_blank" class="video-link"><span class="video-number">14</span><span class="video-title">Uso de GroupBox</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=kYIxMJtZ0Ys" target="_blank" class="video-link"><span class="video-number">55</span><span class="video-title">Uso de Panel</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=1X9hVnLNwjA" target="_blank" class="video-link"><span class="video-number">56</span><span class="video-title">FlowLayoutPanel</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=cSwJZdOPcD8" target="_blank" class="video-link"><span class="video-number">57</span><span class="video-title">TableLayoutPanel</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=WQsQb4gOTfc" target="_blank" class="video-link"><span class="video-number">58</span><span class="video-title">Uso de SplitContainer</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=MV9H00bJ4yE" target="_blank" class="video-link"><span class="video-number">59</span><span class="video-title">Uso de TabControl</span><span class="play-icon">▶</span></a></li>
+                <li class="video-item"><a href="https://www.youtube.com/watch?v=0JLrXvxEmoE" target="_blank" class="video-link"><span class="video-number">60</span><span class="video-title" style="color: var(--accent);">Fin de Curso (Conclusión)</span><span class="play-icon">▶</span></a></li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+</html>
